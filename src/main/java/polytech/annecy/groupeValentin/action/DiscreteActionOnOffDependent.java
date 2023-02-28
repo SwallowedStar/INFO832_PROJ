@@ -1,11 +1,11 @@
-package action;
+package polytech.annecy.groupeValentin.action;
 
 import java.lang.reflect.Method;
 import java.util.TreeSet;
 import java.util.Vector;
 
-import timer.DateTimer;
-import timer.Timer;
+import polytech.annecy.groupeValentin.timer.DateTimer;
+import polytech.annecy.groupeValentin.timer.Timer;
 
 /**
  * @author flver
