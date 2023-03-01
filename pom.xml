@@ -23,11 +23,7 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-      <version>${javax.inject.version}</version>
-	</dependency>
+    
   </dependencies>
 
 </project>
