@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import polytech.annecy.groupeValentin.timer.DateTimer;
 import polytech.annecy.groupeValentin.timer.Timer;
 
+import java.util.NoSuchElementException;
 import java.util.Vector;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DiscreteActionTest {
     private DiscreteAction da1;
@@ -30,7 +30,7 @@ public class DiscreteActionTest {
     }
 
     @Test
-    public void compareTo(){
+    public void testHasNext(){
         assertTrue(this.da1.compareTo(this.da2) > 0);
         assertTrue(this.da2.compareTo(this.da1) < 0);
         assertEquals(0, this.da1.compareTo(this.da1));
@@ -49,24 +49,17 @@ public class DiscreteActionTest {
         assertEquals(3, this.da2.getCurrentLapsTime());
     }
 
+    @Test
     public void testGetMethod() {
+        assertEquals( "toUpperCase" ,this.da1.getMethod().getName());
+        assertEquals( "toLowerCase" ,this.da2.getMethod().getName());
     }
-
-    public void testGetCurrentLapsTime() {
-    }
-
-    public void testGetObject() {
-    }
-
-    public void testCompareTo() {
-    }
-
-    public void testTestToString() {
-    }
-
+    @Test
     public void testNext() {
-    }
-
-    public void testHasNext() {
+        DiscreteAction da3 = (DiscreteAction) da1.next();
+        assertEquals(0, da3.compareTo(da1));
+        assertFalse(da3.hasNext());
+        assertThrowsExactly(NoSuchElementException.class, () -> {da3.next();});
+        assertEquals(-1, da3.compareTo(da2));
     }
 }
