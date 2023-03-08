@@ -30,7 +30,7 @@ public class DiscreteActionTest {
     }
 
     @Test
-    public void testHasNext(){
+    public void testCompareTo(){
         assertTrue(this.da1.compareTo(this.da2) > 0);
         assertTrue(this.da2.compareTo(this.da1) < 0);
         assertEquals(0, this.da1.compareTo(this.da1));
