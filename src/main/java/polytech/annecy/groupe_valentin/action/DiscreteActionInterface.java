@@ -1,4 +1,4 @@
-package polytech.annecy.groupeValentin.action;
+package polytech.annecy.groupe_valentin.action;
 
 import java.lang.reflect.Method;
 import java.util.Iterator;
