@@ -164,13 +164,13 @@ public class RandomTimer implements Timer {
 	 */
 	private int nextTimePoisson() {
 	    
-	    double L = Math.exp(-this.mean);
+	    double l = Math.exp(-this.mean);
 	    int k = 0;
 	    double p = 1.0;
 	    do {
 	        p = p * this.r.nextDouble();
 	        k++;
-	    } while (p > L);
+	    } while (p > l);
 	    return k - 1;
 	}   		
 	    
