@@ -1,11 +1,11 @@
-package polytech.annecy.groupeValentin.timer;
+package polytech.annecy.groupe_valentin.timer;
 
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import polytech.annecy.groupeValentin.timer.RandomTimer;
-import polytech.annecy.groupeValentin.timer.RandomTimer.randomDistribution;
+import polytech.annecy.groupe_valentin.timer.RandomTimer;
+import polytech.annecy.groupe_valentin.timer.RandomTimer.randomDistribution;
 
 import static org.junit.jupiter.api.Assertions.*;
 
