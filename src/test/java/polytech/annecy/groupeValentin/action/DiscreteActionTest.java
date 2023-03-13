@@ -39,8 +39,10 @@ public class DiscreteActionTest {
     @Test
     public void testSpendTime() {
         this.da1.spendTime(1);
+        assertNull(this.da1.getCurrentLapsTime());
         this.da1.next();
         this.da2.next();
+        assertNotNull(this.da1.getCurrentLapsTime());
 
         this.da1.spendTime(1);
         this.da2.spendTime(1);
@@ -57,6 +59,7 @@ public class DiscreteActionTest {
     @Test
     public void testNext() {
         DiscreteAction da3 = (DiscreteAction) da1.next();
+        assertEquals("toUpperCase",da1.getMethod().getName());
         assertEquals(0, da3.compareTo(da1));
         assertFalse(da3.hasNext());
         assertThrowsExactly(NoSuchElementException.class, () -> {da3.next();});
