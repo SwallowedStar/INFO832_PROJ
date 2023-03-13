@@ -1,6 +1,6 @@
-package polytech.annecy.groupeValentin.action;
+package polytech.annecy.groupe_valentin.action;
 
-import polytech.annecy.groupeValentin.timer.Timer;
+import polytech.annecy.groupe_valentin.timer.Timer;
 
 import java.lang.reflect.Method;
 

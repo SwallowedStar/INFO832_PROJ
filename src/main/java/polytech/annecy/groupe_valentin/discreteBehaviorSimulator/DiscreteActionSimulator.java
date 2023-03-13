@@ -1,5 +1,5 @@
 
-package polytech.annecy.groupeValentin.discreteBehaviorSimulator;
+package polytech.annecy.groupe_valentin.discreteBehaviorSimulator;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import polytech.annecy.groupeValentin.action.DiscreteActionInterface;
+import polytech.annecy.groupe_valentin.action.DiscreteActionInterface;
 
 
 /**

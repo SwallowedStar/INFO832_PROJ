@@ -1,4 +1,4 @@
-package polytech.annecy.groupeValentin.discreteBehaviorSimulator;
+package polytech.annecy.groupe_valentin.discreteBehaviorSimulator;
 
 
 import java.util.Date;
