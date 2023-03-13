@@ -3,6 +3,8 @@ package polytech.annecy.groupeValentin.discreteBehaviorSimulator;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,14 +41,29 @@ class ClockTest {
 
     @Test
     void isVirtual() {
+        Clock ck=Clock.getInstance();
+        boolean bool=true;
+        assertEquals(bool,ck.isVirtual());
     }
 
     @Test
     void setNextJump() {
+
     }
 
     @Test
-    void increase() {
+    void increase() throws Exception{
+        Clock clock = Clock.getInstance();
+        clock.setVirtual(true);
+        clock.setNextJump(1);
+
+
+        //
+        clock.increase(1);
+
+        assertEquals(1, clock.getTime());
+
+
     }
 
     @Test

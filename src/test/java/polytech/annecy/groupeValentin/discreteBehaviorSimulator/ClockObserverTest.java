@@ -4,13 +4,37 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ClockObserverTest {
+public class ClockObserverTest implements ClockObserver {
+    private int observedTime;
+    private int observedNextJump;
 
     @Test
-    void clockChange() {
+    public void testClockObserver() {
+        Clock clock = Clock.getInstance();
+        clock.addObserver(this);
+
+        // Set next jump to 10
+        clock.setNextJump(10);
+
+        // Increase time by 10
+        try {
+            clock.increase(10);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Check if the observer methods were called with the correct values
+        assert(observedTime == 10);
+        assert(observedNextJump == 10);
     }
 
-    @Test
-    void nextClockChange() {
+    @Override
+    public void clockChange(int time) {
+        observedTime = time;
+    }
+
+    @Override
+    public void nextClockChange(int nextJump) {
+        observedNextJump = nextJump;
     }
 }
