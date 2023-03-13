@@ -2,7 +2,7 @@ package polytech.annecy.groupeValentin.timer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import polytech.annecy.groupeValentin.timer.DateTimer;
+import polytech.annecy.groupeValentin.timer.PeriodicTimer;
 import polytech.annecy.groupeValentin.timer.Timer;
 
 import java.util.NoSuchElementException;
