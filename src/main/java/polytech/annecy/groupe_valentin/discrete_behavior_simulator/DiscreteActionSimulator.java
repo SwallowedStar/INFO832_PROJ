@@ -1,5 +1,5 @@
 
-package polytech.annecy.groupe_valentin.discreteBehaviorSimulator;
+package polytech.annecy.groupe_valentin.discrete_behavior_simulator;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
