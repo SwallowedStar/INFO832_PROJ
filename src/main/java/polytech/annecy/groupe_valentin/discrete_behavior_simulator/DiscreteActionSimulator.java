@@ -117,12 +117,9 @@ public class DiscreteActionSimulator implements Runnable {
 			}
 			m.invoke(o);
 			if(this.globalTime!=null) {
-				this.logger.log(Level.FINE, "[DAS] run action " + m.getName() + " on " + o.getClass().getName() + ":" + o.hashCode() + " at " + this.globalTime.getTime() + " after " + sleepTime + " time units\n");
-				System.out.println("[DAS] run action " + m.getName() + " on " + o.getClass().getName() + ":" + o.hashCode() + " at " + this.globalTime.getTime() + " after " + sleepTime + " time units\n");
+				this.logger.log(Level.FINE, String.format("[DAS] run action {} on {}:{} at {} after {} time units\n", m.getName(), o.getClass().getName(), o.hashCode(), this.globalTime.getTime(), sleepTime));
 			}else {
-				this.logger.log(Level.FINE, "[DAS] run action " + m.getName() + " on " + o.getClass().getName() + ":" + o.hashCode() + " after " + sleepTime + " time units\n");
-				System.out.println("[DAS] run action " + m.getName() + " on " + o.getClass().getName() + ":" + o.hashCode() + " after " + sleepTime + " time units\n");
-			
+				this.logger.log(Level.FINE, String.format("[DAS] run action {} on {}:{} after {} time units\n", m.getName(), o.getClass().getName(), o.hashCode(), sleepTime));
 			}
 			
 		}catch (Exception e) {
@@ -161,11 +158,9 @@ public class DiscreteActionSimulator implements Runnable {
 			a = a.next();
 			this.actionsList.addElement(a);
 			if(this.globalTime!=null) {
-				this.logger.log(Level.FINE, "[DAS] reset action " + a.getMethod().getName() + " on " + a.getObject().getClass().getName() + ":" + a.getObject().hashCode() + " at " + this.globalTime.getTime() + " to " + a.getCurrentLapsTime() + " time units\n");
-				System.out.println("[DAS] reset action " + a.getMethod().getName() + " on " + a.getObject().getClass().getName() + ":" + a.getObject().hashCode() + " at " + this.globalTime.getTime() + " to " + a.getCurrentLapsTime() + " time units\n");
+				this.logger.log(Level.FINE, String.format("[DAS] reset action {} on {}:{} at {} to {} time units\n", a.getMethod().getName(), a.getObject().getClass().getName(), a.getObject().hashCode(), this.globalTime.getTime(), a.getCurrentLapsTime()));
 			}else {
-				this.logger.log(Level.FINE, "[DAS] reset action " + a.getMethod().getName() + " on " + a.getObject().getClass().getName() + ":" + a.getObject().hashCode() + " to " + a.getCurrentLapsTime() + " time units\n");
-				System.out.println("[DAS] reset action " + a.getMethod().getName() + " on " + a.getObject().getClass().getName() + ":" + a.getObject().hashCode() + " to " + a.getCurrentLapsTime() + " time units\n");
+				this.logger.log(Level.FINE, String.format("[DAS] reset action {} on {}:{} to {} time units\n", a.getMethod().getName(), a.getObject().getClass().getName(), a.getObject().hashCode(), a.getCurrentLapsTime()));
 			}
 			Collections.sort(this.actionsList);
 		}
@@ -206,9 +201,9 @@ public class DiscreteActionSimulator implements Runnable {
 		}
 		this.running = false;
 		if(this.step>0) {
-			System.out.println("DAS: " + (this.nbLoop - count) + " actions done for " + this.nbLoop + " turns asked.");
+			this.logger.log(Level.FINE, String.format("DAS: {} actions done for {} turns asked.", (this.nbLoop - count), this.nbLoop));
 		}else {
-			System.out.println("DAS: " + (count) + " actions done!");			
+			this.logger.log(Level.FINE, String.format("DAS: {} actions done!", count));			
 		}
 	}
 
@@ -218,7 +213,7 @@ public class DiscreteActionSimulator implements Runnable {
 	}
 
 	public void stop(){
-		System.out.println("STOP THREAD " + t.getName() + "obj " + this);
+		this.logger.log(Level.FINE, String.format("STOP THREAD {} obj {}", t.getName(), this));
 		this.running = false;
 	}
 	
