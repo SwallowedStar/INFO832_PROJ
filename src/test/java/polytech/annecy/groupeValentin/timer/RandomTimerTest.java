@@ -37,5 +37,6 @@ public class RandomTimerTest {
     @Test
     public void testNext(){
         assertNotSame(-1, this.randomTimer1.next());
+        assertNotSame(-1, this.randomTimer3.next());
     }
 }
