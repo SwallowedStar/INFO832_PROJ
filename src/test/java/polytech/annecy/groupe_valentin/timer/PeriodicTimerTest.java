@@ -1,9 +1,9 @@
-package polytech.annecy.groupeValentin.timer;
+package polytech.annecy.groupe_valentin.timer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import polytech.annecy.groupeValentin.timer.PeriodicTimer;
-import polytech.annecy.groupeValentin.timer.Timer;
+import polytech.annecy.groupe_valentin.timer.PeriodicTimer;
+import polytech.annecy.groupe_valentin.timer.Timer;
 
 import java.util.NoSuchElementException;
 import java.util.Vector;
