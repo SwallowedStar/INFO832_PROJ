@@ -60,7 +60,9 @@ class DiscreteActionDependentTest {
     @Test
     void next() {
         assertNull(this.dad1.getCurrentLapsTime());
+        assertEquals("toUpperCase", this.dad1.currentAction.getMethod().getName());
         this.dad1.next();
+        assertEquals("toUpperCase", this.dad1.currentAction.getMethod().getName());
         assertNotNull(this.dad1.getCurrentLapsTime());
         DiscreteActionDependent d = (DiscreteActionDependent)this.dad1.next();
         assertEquals( "strip", d.currentAction.getMethod().getName());
@@ -70,11 +72,11 @@ class DiscreteActionDependentTest {
     void hasNext() {
         // Il y a un rapport de bug à faire
         assertTrue(this.dad1.hasNext());
-        this.dad1.next();
+        this.dad1.next().getCurrentLapsTime();
         assertTrue(this.dad1.hasNext());
-        this.dad1.next();
+        this.dad1.next().getCurrentLapsTime();
         assertFalse(this.dad1.hasNext());
-
+        this.dad1.next();
         Vector<Integer> v2 = new Vector<>();
         v2.add(4);
 
