@@ -10,7 +10,7 @@ import java.util.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DateTimerTest {
+class DateTimerTest {
     private Timer t1;
     private Timer t2;
     
@@ -30,7 +30,7 @@ public class DateTimerTest {
     }
 
     @Test
-    public void testHasNext(){
+    void testHasNext(){
         assertTrue(this.t1.hasNext());
         assertTrue(this.t2.hasNext());
 
@@ -42,7 +42,7 @@ public class DateTimerTest {
     }
 
     @Test
-    public void testNext() {
+    void testNext() {
         assertEquals(5, this.t1.next());
 
         assertEquals(4, this.t2.next());

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TimeBoundedTimerTest {
+class TimeBoundedTimerTest {
     private int startTime = 0;
     private int stopTime = 4;
     private PeriodicTimer timer1;
@@ -23,7 +23,7 @@ public class TimeBoundedTimerTest {
     }
 
     @Test
-    public void testHasNext(){
+    void testHasNext(){
         assertTrue(this.timerBound1.hasNext());
         this.timerBound1.next();
         assertTrue(this.timerBound1.hasNext());
@@ -36,7 +36,7 @@ public class TimeBoundedTimerTest {
     }
 
     @Test
-    public void testNext(){
+    void testNext(){
         assertNotNull(this.timerBound2.next()); // 3
         assertNotNull(this.timerBound2.next()); // null car 6 < 4 ne marche pas
     }
