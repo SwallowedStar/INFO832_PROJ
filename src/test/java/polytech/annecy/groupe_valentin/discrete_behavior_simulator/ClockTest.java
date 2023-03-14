@@ -73,7 +73,6 @@ class ClockTest {
         Clock clk=Clock.getInstance();
         long dt1=clk.getTime();
 
-
         assertEquals(0,dt1);
 
         clk.setVirtual(false);
@@ -81,6 +80,6 @@ class ClockTest {
         long dt2 = clk.getTime();
         long tActual = new Date().getTime();
 
-        assertEquals(tActual, dt2);
+        assertTrue(dt2 <= tActual && tActual <= dt2+3 );
     }
 }
