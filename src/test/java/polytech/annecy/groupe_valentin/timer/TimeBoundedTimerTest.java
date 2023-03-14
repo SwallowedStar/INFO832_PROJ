@@ -36,7 +36,7 @@ class TimeBoundedTimerTest {
     }
 
     @Test
-    public void testNext(){
+    void testNext(){
         assertNotNull(this.timerBound2.next());
         assertNull(this.timerBound2.next());
     }
