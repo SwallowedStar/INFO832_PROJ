@@ -65,21 +65,6 @@ public class PeriodicTimer extends Exception implements Timer {
 		
 		return next;
 	}
-	
-	/*@Override
-	public Integer next(int since) {
-		
-		int next = (this.at - (since % this.period) + this.period) % this.period;
-		
-		if(this.moreOrLess != null) {
-			next += this.moreOrLess.next() - this.moreOrLess.getMean();
-			this.next = this.period * 2 - next;
-		}else {
-			this.next = this.period;
-		}
-		
-		return next;
-	}*/
 
 	@Override
 	public boolean hasNext() {
