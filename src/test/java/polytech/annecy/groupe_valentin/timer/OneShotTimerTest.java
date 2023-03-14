@@ -2,12 +2,6 @@ package polytech.annecy.groupe_valentin.timer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import polytech.annecy.groupe_valentin.timer.OneShotTimer;
-import polytech.annecy.groupe_valentin.timer.Timer;
-
-import java.util.NoSuchElementException;
-import java.util.Vector;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class OneShotTimerTest {

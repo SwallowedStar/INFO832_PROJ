@@ -2,12 +2,8 @@ package polytech.annecy.groupe_valentin.timer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import polytech.annecy.groupe_valentin.timer.DateTimer;
-import polytech.annecy.groupe_valentin.timer.Timer;
-
-import java.util.NoSuchElementException;
-import java.util.Vector;
-
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DateTimerTest {
@@ -16,9 +12,9 @@ class DateTimerTest {
     
     @BeforeEach
     protected void setUp() throws Exception {
-        Vector<Integer> v1 = new Vector<>();
+        List<Integer> v1 = new ArrayList<>();
         v1.add(5);
-        Vector<Integer> v2 = new Vector<>();
+        List<Integer> v2 = new ArrayList<>();
         v2.add(4);
         v2.add(5);
         v2.add(1);

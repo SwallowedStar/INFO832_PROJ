@@ -2,9 +2,6 @@ package polytech.annecy.groupe_valentin.timer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import polytech.annecy.groupe_valentin.timer.OneShotTimer;
-import polytech.annecy.groupe_valentin.timer.PeriodicTimer;
-import polytech.annecy.groupe_valentin.timer.Timer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
