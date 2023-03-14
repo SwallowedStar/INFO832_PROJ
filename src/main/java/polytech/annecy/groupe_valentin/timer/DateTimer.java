@@ -1,16 +1,17 @@
 package polytech.annecy.groupe_valentin.timer;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
-import java.util.Vector;
+import java.util.List;
 
 public class DateTimer  implements Timer {
 	
-	Vector<Integer> lapsTimes;
+	List<Integer> lapsTimes;
 	Iterator<Integer> it;
 	
 	public DateTimer(TreeSet<Integer> dates) {
-		this.lapsTimes = new Vector<Integer>();
+		this.lapsTimes = new ArrayList<>();
 		Integer last;
 		Integer current=0;
 		
@@ -21,11 +22,10 @@ public class DateTimer  implements Timer {
 			this.lapsTimes.add(current-last);
 		}
 		this.it = this.lapsTimes.iterator();
-
 	}
 	
-	public DateTimer(Vector<Integer> lapsTimes) {
-		this.lapsTimes = new Vector<Integer>(lapsTimes);
+	public DateTimer(List<Integer> lapsTimes) {
+		this.lapsTimes = new ArrayList<>(lapsTimes);
 		this.it = this.lapsTimes.iterator();
 	}
 
