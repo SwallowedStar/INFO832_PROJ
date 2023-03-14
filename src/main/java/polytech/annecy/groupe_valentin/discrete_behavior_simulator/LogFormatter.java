@@ -11,7 +11,7 @@ import java.util.logging.LogRecord;
  *
  */
 public class LogFormatter  extends Formatter {
-	
+
 	public String format(LogRecord rec) {
 		return calcDate(rec.getMillis()) +
 				": " +
@@ -20,17 +20,17 @@ public class LogFormatter  extends Formatter {
 				formatMessage(rec) +
 				System.getProperty("line.separator");
 	}
-	
+
 	private String calcDate(long millisecs) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss.SS");
 		Date resultdate = new Date(millisecs);
 		return dateFormat.format(resultdate);
-  	}
+	}
 
-	  // this method is called just after the handler using this
-	  // formatter is created
+	// this method is called just after the handler using this
+	// formatter is created
 	@Override
-  	public String getHead(Handler h) {
+	public String getHead(Handler h) {
 		// TODO: Finish this function
 		return "";
 	}
@@ -42,5 +42,5 @@ public class LogFormatter  extends Formatter {
 	public String getTail(Handler h) {
 		// TODO: Finish this function
 		return "";
-	  }
+	}
 }
