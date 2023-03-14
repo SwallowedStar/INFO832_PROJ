@@ -5,9 +5,10 @@ public class PeriodicTimer extends Exception implements Timer {
 	private int period;
 	private int next;
 	private RandomTimer moreOrLess = null;
+	private final String argumentIsNegative = "argument is negative";
 	
 	public PeriodicTimer(int at) {
-		if (at<0) throw new IllegalArgumentException("argument is negative");
+		if (at<0) throw new IllegalArgumentException(this.argumentIsNegative);
 		this.period = at;
    		this.next = at;
 	}
@@ -20,42 +21,22 @@ public class PeriodicTimer extends Exception implements Timer {
 	 */
 	@Deprecated
 	public PeriodicTimer(int at, RandomTimer moreOrLess) {
-		if (at<0) throw new IllegalArgumentException("argument is negative");
+		if (at<0) throw new IllegalArgumentException(this.argumentIsNegative);
 		this.period = at;
 		this.moreOrLess = moreOrLess;
 		this.next = at + (int)(this.moreOrLess.next() - this.moreOrLess.getMean());
 	}
 	
 	public PeriodicTimer(int period, int at) {
-		if (at<0 || period<0) throw new IllegalArgumentException("argument is negative");
+		if (at<0 || period<0) throw new IllegalArgumentException(this.argumentIsNegative);
 		this.period = period;
 		this.next = at;
 	}
-	
-	/**
-	 * @param period
-	 * @param at
-	 * @param moreOrLess
-	 * 
-	 * use MergedTimer instead
-	 */
-	@Deprecated
-	public PeriodicTimer(int period, int at, RandomTimer moreOrLess) {
-		if (at<0 || period<0) throw new IllegalArgumentException("argument is negative");
-		this.period = period;
-		this.moreOrLess = moreOrLess;
-		this.next = at + (int)(this.moreOrLess.next() - this.moreOrLess.getMean());
-	}
-	
-	public int getPeriod() {
-		return this.period;
-	}
-	
-	
+
 	@Override
 	public Integer next() {
 		
-		int next =  this.next;
+		int res = this.next;
 		
 		if(this.moreOrLess != null) {
 			this.next = this.period + (int)(this.moreOrLess.next() - this.moreOrLess.getMean());
@@ -63,7 +44,7 @@ public class PeriodicTimer extends Exception implements Timer {
 			this.next = this.period;
 		}
 		
-		return next;
+		return res;
 	}
 
 	@Override
