@@ -2,7 +2,6 @@ package polytech.annecy.groupe_valentin.action;
 
 import java.lang.reflect.Method;
 import java.util.TreeSet;
-import java.util.Vector;
 
 import polytech.annecy.groupe_valentin.timer.DateTimer;
 import polytech.annecy.groupe_valentin.timer.Timer;
@@ -17,7 +16,6 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 	protected DiscreteActionInterface offAction;
 	protected DiscreteActionInterface currentAction;
 	
-	private Integer currentLapsTime;
 	private Integer lastOffDelay=0;
 	
 	/**
@@ -30,63 +28,17 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 	 * @param off
 	 * @param timerOff
 	 */
-	/*public DiscreteActionOnOffDependent(Wo o, Method on, Timer timerOn, Method off, Timer timerOff){
-		this.onAction = new DiscreteAction(o, on, timerOn);
-		this.offAction = new DiscreteAction(o, off, timerOff);
-		
-		this.currentAction = this.onAction;
-	}*/
 	
 	public DiscreteActionOnOffDependent(Object o, String on, Timer timerOn, String off, Timer timerOff){
 		this.onAction = new DiscreteAction(o, on, timerOn);
 		this.offAction = new DiscreteAction(o, off, timerOff);
 		
 		this.currentAction = this.offAction;
-		this.currentLapsTime = 0;
-	}
-	
-	private void dates2Timalapse(TreeSet<Integer> datesOn, TreeSet<Integer> datesOff, Vector<Integer> timeLapseOn, Vector<Integer> timeLapseOff) {
-		Vector<Integer> currentTimeLapse;
-		TreeSet<Integer> currentDates;
-		Integer date=0;
-		if(datesOn.first()<datesOff.first()) {
-			currentTimeLapse = timeLapseOn;
-			currentDates = datesOn;
-		}else {
-			currentTimeLapse = timeLapseOff;	
-			currentDates = datesOff;		
-		}
-		Integer nextDate;
-		
-		while(datesOn.size()>0 || datesOff.size()>0) {
-			nextDate = currentDates.first();
-		
-			currentTimeLapse.add(nextDate - date);
-			currentDates.remove(nextDate);
-		
-			date = nextDate;
-			
-			if(currentDates == datesOn) {
-				currentDates = datesOff;
-				currentTimeLapse = timeLapseOff;
-			}else {
-				currentDates = datesOn;
-				currentTimeLapse = timeLapseOn;			
-			}
-		}
-		
 	}
 	
 	public DiscreteActionOnOffDependent(Object o, String on, TreeSet<Integer> datesOn, String off, TreeSet<Integer> datesOff){
-		/*Vector<Integer> timeLapseOn = new Vector<Integer>();
-		Vector<Integer> timeLapseOff = new Vector<Integer>();
-		
-		dates2Timalapse((TreeSet<Integer>)datesOn.clone(), (TreeSet<Integer>)datesOff.clone(), timeLapseOn, timeLapseOff);
-		*/
 		this.onAction = new DiscreteAction(o, on, new DateTimer(datesOn));
 		this.offAction = new DiscreteAction(o, off, new DateTimer(datesOff));
-		
-		
 		
 		if(datesOn.first() < datesOff.first()){
 			this.currentAction = this.onAction;
@@ -135,7 +87,4 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 	public boolean hasNext() {
 		return this.onAction.hasNext() || this.offAction.hasNext();		
 	}
-
-	
-
 }

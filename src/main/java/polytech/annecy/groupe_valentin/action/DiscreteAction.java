@@ -18,15 +18,12 @@ import java.util.logging.Logger;
 public class DiscreteAction implements DiscreteActionInterface {
 	private Object object;
 	private Method method;
-	
-	
 	private Timer timmer;				// timer provides new lapsTime
 	private Integer lapsTime; 			// waiting time (null if never used)
 	
 	private Logger logger;
 
 	// Constructor
-	
 	private DiscreteAction() {
 		// Start logger
 			this.logger = Logger.getLogger("DAS");
