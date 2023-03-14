@@ -32,12 +32,12 @@ class TimeBoundedTimerTest {
         this.timerBound2.next();
         assertTrue(this.timerBound2.hasNext());
         this.timerBound2.next();
-        assertTrue(this.timerBound2.hasNext());
+        assertFalse(this.timerBound2.hasNext());
     }
 
     @Test
-    void testNext(){
-        assertNotNull(this.timerBound2.next()); // 3
-        assertNotNull(this.timerBound2.next()); // null car 6 < 4 ne marche pas
+    public void testNext(){
+        assertNotNull(this.timerBound2.next());
+        assertNull(this.timerBound2.next());
     }
 }
