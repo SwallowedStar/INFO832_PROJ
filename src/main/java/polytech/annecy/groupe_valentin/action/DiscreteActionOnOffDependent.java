@@ -2,7 +2,6 @@ package polytech.annecy.groupe_valentin.action;
 
 import java.lang.reflect.Method;
 import java.util.TreeSet;
-import java.util.Vector;
 
 import polytech.annecy.groupe_valentin.timer.DateTimer;
 import polytech.annecy.groupe_valentin.timer.Timer;
@@ -17,7 +16,6 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 	protected DiscreteActionInterface offAction;
 	protected DiscreteActionInterface currentAction;
 	
-	private Integer currentLapsTime;
 	private Integer lastOffDelay=0;
 	
 	/**
@@ -36,7 +34,6 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 		this.offAction = new DiscreteAction(o, off, timerOff);
 		
 		this.currentAction = this.offAction;
-		this.currentLapsTime = 0;
 	}
 	
 	public DiscreteActionOnOffDependent(Object o, String on, TreeSet<Integer> datesOn, String off, TreeSet<Integer> datesOff){
