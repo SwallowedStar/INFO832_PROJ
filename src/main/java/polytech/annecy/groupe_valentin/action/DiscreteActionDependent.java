@@ -63,6 +63,7 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	}
 
 	public void updateTimeLaps() {
+		// time laps is updated at the re-initialization
 		this.nextMethod();	
 	}
 

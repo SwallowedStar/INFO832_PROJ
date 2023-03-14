@@ -1,10 +1,12 @@
 package polytech.annecy.groupe_valentin.action;
 
+import polytech.annecy.groupe_valentin.timer.Timer;
+
 import java.lang.reflect.Method;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import polytech.annecy.groupe_valentin.timer.Timer;
 
 /**
  * @author Tiphaine Bulou (2016)
@@ -41,26 +43,29 @@ public class DiscreteAction implements DiscreteActionInterface {
 		this.timmer = timmer;
 	}
 	
+	// ATTRIBUTION
+
 	public void spendTime(int t) {
 		Integer old = this.lapsTime;
 		if(this.lapsTime != null) {
 			this.lapsTime -= t;
 		}
-		this.logger.log(Level.FINE, "[DA] operate spendTime on  " + this.getObject().getClass().getName() + ":" + this.getObject().hashCode() + ": old time " + old + " new time " + this.getCurrentLapsTime());
+		this.logger.log(Level.FINE, String.format("[DA] operate spendTime on  {}:{}: old time {} new time {}", this.getObject().getClass().getName(), this.getObject().hashCode(), old ,this.getCurrentLapsTime()));
 	}
 
 	// RECUPERATION
+
 	public Method getMethod(){
 		return method;
 	}
-
 	public Integer getCurrentLapsTime(){
 		return lapsTime;
 	}
-
 	public Object getObject(){
 		return object;
 	}
+
+
 
 	// COMPARAISON
 	public int compareTo(DiscreteActionInterface c) {
@@ -90,7 +95,7 @@ public class DiscreteAction implements DiscreteActionInterface {
 	public DiscreteActionInterface next() {
 		Integer old = this.lapsTime;
 		this.lapsTime = this.timmer.next();
-		this.logger.log(Level.FINE, "[DA] operate next on  " + this.getObject().getClass().getName() + ":" + this.getObject().hashCode() + ": old time " + old + " new time " + this.getCurrentLapsTime());
+		this.logger.log(Level.FINE, String.format("[DA] operate next on  {}:{}: old time {} new time {}", this.getObject().getClass().getName(),  this.getObject().hashCode(), old, this.getCurrentLapsTime()));
 		return this;
 	}
 
