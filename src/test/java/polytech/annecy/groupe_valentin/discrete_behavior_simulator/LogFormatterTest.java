@@ -8,6 +8,7 @@ class LogFormatterTest {
 
     @Test
     void format() {
+
     }
 
     @Test
