@@ -1,6 +1,5 @@
 package polytech.annecy.groupe_valentin.discrete_behavior_simulator;
 
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;

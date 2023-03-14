@@ -9,7 +9,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import polytech.annecy.groupe_valentin.action.DiscreteAction;
 import polytech.annecy.groupe_valentin.action.DiscreteActionInterface;
 
 

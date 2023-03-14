@@ -1,16 +1,10 @@
 package polytech.annecy.groupe_valentin.action;
 
-import polytech.annecy.groupe_valentin.timer.Timer;
-
 import java.lang.reflect.Method;
-import java.util.TreeSet;
-import java.util.Vector;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import polytech.annecy.groupe_valentin.discrete_behavior_simulator.LogFormatter;
+import polytech.annecy.groupe_valentin.timer.Timer;
 
 /**
  * @author Tiphaine Bulou (2016)

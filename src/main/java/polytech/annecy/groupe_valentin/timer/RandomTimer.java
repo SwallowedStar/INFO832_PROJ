@@ -1,7 +1,6 @@
 package polytech.annecy.groupe_valentin.timer;
 
 import java.util.Random;
-import java.util.Vector;
 
 /**
  * @author Flavien Vernier
