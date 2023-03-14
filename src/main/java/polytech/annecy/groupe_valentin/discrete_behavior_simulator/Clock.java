@@ -13,16 +13,15 @@ public class Clock {
 	private int nextJump;
 	private ReentrantReadWriteLock lock;
 	private boolean virtual;
-	
-	
-	private Set<ClockObserver> observers;
+
+	private final Set<ClockObserver> observers;
 	
 	private Clock() {
 		this.time = 0;
 		this.nextJump=0;
 		this.lock = new ReentrantReadWriteLock();
 		this.virtual = true;
-		this.observers = new HashSet<ClockObserver>();
+		this.observers = new HashSet<>();
 	}
 	
 	public static Clock getInstance() {
@@ -52,32 +51,21 @@ public class Clock {
 			o.nextClockChange(this.nextJump);
 		}
 	}
-	/*public void setTime(int time) throws IllegalAccessException {
-		this.lock.lock();
-		if (this.time < time) {
-			this.time = time;
-			for(ClockObserver o:this.observers) {
-				o.ClockChange();
-			}
-		}else{
-			this.lock.unlock();
-			throw new IllegalAccessException("Set time error, cannot go back to the past !!!");
-		}
-		this.lock.unlock();
-	}*/
-	public void increase(int time) throws Exception {
+
+	public void increase(int time) throws IllegalArgumentException {
 
 		this.lockWriteAccess();
 
 		if(time != this.nextJump) {
-			throw new Exception("Unexpected time change");
+			throw new IllegalArgumentException("Unexpected time change");
 		}
 		this.time += time;
-		for(ClockObserver o:this.observers) {
+		for(ClockObserver o : this.observers) {
 			o.clockChange(this.time);
 		}
 		this.unlockWriteAccess();
 	}
+
 	public long getTime() {
 		if(this.virtual) {
 			return this.time;
