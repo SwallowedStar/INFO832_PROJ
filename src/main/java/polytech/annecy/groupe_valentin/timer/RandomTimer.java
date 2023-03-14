@@ -11,11 +11,9 @@ import java.util.Random;
 
 public class RandomTimer implements Timer {
 	
-	public static enum randomDistribution {
+	public enum randomDistribution {
 		POISSON, EXP, POSIBILIST, GAUSSIAN;
 	}
-	
-	//private static String randomDistributionString[] = {"POISSON", "EXP", "POSIBILIST", "GAUSSIAN"};
 	
 	private Random r = new Random();
 	private randomDistribution distribution;
@@ -23,8 +21,6 @@ public class RandomTimer implements Timer {
 	private double mean;
 	private double lolim;
 	private double hilim; 
-	//private int width; 
-	
 	
 	public static randomDistribution string2Distribution(String distributionName){
 		return RandomTimer.randomDistribution.valueOf(RandomTimer.randomDistribution.class, distributionName.toUpperCase());
@@ -61,7 +57,7 @@ public class RandomTimer implements Timer {
 	public RandomTimer(randomDistribution distribution, int lolim, int hilim) throws Exception{
 		if(distribution == randomDistribution.POSIBILIST || distribution == randomDistribution.GAUSSIAN){
 			this.distribution = distribution;
-			this.mean = lolim + (hilim - lolim)/2;
+			this.mean = lolim + ((double) hilim - lolim)/2;
 			this.rate = Double.NaN;
 			this.lolim = lolim;
 			this.hilim = hilim;
@@ -129,24 +125,12 @@ public class RandomTimer implements Timer {
 		return -1; // Theoretically impossible !!!
 	}
 	
-	/*
-	 * Equivalent to methodInvocator.RandomTimer#next()
-	 * 
-	 * @param since has no effect
-	 * 
-	 * @see methodInvocator.RandomTimer#next(int)
-	 */
-	/*@Override
-	public Integer next(int since){
-		return this.next();
-	}*/
-	
-	/**
+    /**
 	 * Give good mean
 	 * Give wrong variance  
 	 */
 	private int nextTimePosibilist(){
-	    return (int)this.lolim + (int)(this.r.nextDouble() * (this.hilim - this.lolim));
+	    return (int)this.lolim + (int)(this.r.nextInt() * (this.hilim - this.lolim));
 	}
 	
 	/**
@@ -154,7 +138,7 @@ public class RandomTimer implements Timer {
 	 * Give wrong variance  
 	 */
 	private int nextTimeExp(){
-	    return (int)(-Math.log(1.0 - this.r.nextDouble()) / this.rate);
+	    return (int)(-Math.log(1.0 - this.r.nextInt()) / this.rate);
 	}
 	
 	
