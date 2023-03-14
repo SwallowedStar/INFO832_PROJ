@@ -1,7 +1,7 @@
 package polytech.annecy.groupe_valentin.timer;
 
 import java.util.Iterator;
-import java.util.TreeSet;
+import java.util.SortedSet;
 import java.util.Vector;
 
 public class DateTimer  implements Timer {
@@ -9,7 +9,7 @@ public class DateTimer  implements Timer {
 	Vector<Integer> lapsTimes;
 	Iterator<Integer> it;
 	
-	public DateTimer(TreeSet<Integer> dates) {
+	public DateTimer(SortedSet<Integer> dates) {
 		this.lapsTimes = new Vector<Integer>();
 		Integer last;
 		Integer current=0;
