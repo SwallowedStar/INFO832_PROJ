@@ -1,5 +1,6 @@
 package polytech.annecy.groupe_valentin.discrete_behavior_simulator;
 
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,16 +13,15 @@ public class Clock {
 	private int nextJump;
 	private ReentrantReadWriteLock lock;
 	private boolean virtual;
-	
-	
-	private Set<ClockObserver> observers;
+
+	private final Set<ClockObserver> observers;
 	
 	private Clock() {
 		this.time = 0;
 		this.nextJump=0;
 		this.lock = new ReentrantReadWriteLock();
 		this.virtual = true;
-		this.observers = new HashSet<ClockObserver>();
+		this.observers = new HashSet<>();
 	}
 	
 	public static Clock getInstance() {
@@ -52,19 +52,20 @@ public class Clock {
 		}
 	}
 
-	public void increase(int time) throws Exception {
+	public void increase(int time) throws IllegalArgumentException {
 
 		this.lockWriteAccess();
 
 		if(time != this.nextJump) {
-			throw new Exception("Unexpected time change");
+			throw new IllegalArgumentException("Unexpected time change");
 		}
 		this.time += time;
-		for(ClockObserver o:this.observers) {
+		for(ClockObserver o : this.observers) {
 			o.clockChange(this.time);
 		}
 		this.unlockWriteAccess();
 	}
+
 	public long getTime() {
 		if(this.virtual) {
 			return this.time;
