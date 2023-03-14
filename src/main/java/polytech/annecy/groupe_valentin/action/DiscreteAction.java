@@ -1,6 +1,6 @@
-package polytech.annecy.groupeValentin.action;
+package polytech.annecy.groupe_valentin.action;
 
-import polytech.annecy.groupeValentin.timer.Timer;
+import polytech.annecy.groupe_valentin.timer.Timer;
 
 import java.lang.reflect.Method;
 import java.util.TreeSet;
@@ -10,7 +10,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import polytech.annecy.groupeValentin.discreteBehaviorSimulator.LogFormatter;
+import polytech.annecy.groupe_valentin.discreteBehaviorSimulator.LogFormatter;
 
 /**
  * @author Tiphaine Bulou (2016)
