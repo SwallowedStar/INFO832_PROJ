@@ -1,12 +1,22 @@
 package polytech.annecy.groupe_valentin.discrete_behavior_simulator;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClockObserverTest implements ClockObserver {
     private int observedTime;
     private int observedNextJump;
+
+    @BeforeEach
+    void setUp() throws NoSuchFieldException, IllegalAccessException {
+        Field instance = Clock.class.getDeclaredField("instance");
+        instance.setAccessible(true);
+        instance.set(null, null);
+    }
 
     @Test
     void testClockObserver() {
