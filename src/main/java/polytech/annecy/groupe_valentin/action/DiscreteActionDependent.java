@@ -17,7 +17,8 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	protected TreeSet<DiscreteAction> depedentActions;
 	private Iterator<DiscreteAction> it;
 	protected DiscreteAction currentAction;
-	
+
+	private Boolean started = false;
 	
 	/**
 	 * Construct a series of dependent actions, first action (method) called is baseMethodName, then method nextMethod() is called to select the next action. 
@@ -38,27 +39,28 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	}
 
 	private void reInit() {
-		for (Iterator<DiscreteAction> iter = this.depedentActions.iterator(); iter.hasNext(); ) {
-		    iter.next();
-		}		
+		for (DiscreteAction depedentAction : this.depedentActions) {
+			//TODO finish this method
+		}
 	}
 	
-	public void nextMethod(){
-		if (this.currentAction == this.baseAction){
+	private void nextMethod(){
+		if (this.currentAction == this.baseAction && this.started){
 			this.it = this.depedentActions.iterator();
 			this.currentAction = this.it.next();
-		}else if(this.currentAction == this.depedentActions.last()){
+		}else if(this.currentAction == this.depedentActions.last() && this.currentAction.hasNext()){
 			this.currentAction = this.baseAction;
 			this.reInit();
 		}else {
-			this.currentAction = this.it.next();
+			this.it = this.depedentActions.iterator();
+			this.currentAction.next();
 		}
 	}
 	
 	public void spendTime(int t) {
-		for (Iterator<DiscreteAction> iter = this.depedentActions.iterator(); iter.hasNext(); ) {
-		    DiscreteAction element = iter.next();
-		    element.spendTime(t);
+		this.currentAction.spendTime(t);
+		for (DiscreteAction element : this.depedentActions) {
+			element.spendTime(t);
 		}
 	}
 
@@ -88,12 +90,22 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	}
 
 	public DiscreteActionInterface next() {
-		this.getMethod();
-		this.getObject();
+		this.nextMethod();
+		if(!this.started){
+			for (DiscreteAction element : this.depedentActions) {
+				element.next();
+			}
+		}
+		this.started = true;
 		return this;
 	}
 
 	public boolean hasNext() {
-		return this.baseAction.hasNext() || !this.depedentActions.isEmpty();		
+		boolean result = this.baseAction.hasNext();
+		for (DiscreteAction element : this.depedentActions) {
+			result = result || element.hasNext();
+		}
+		return result;
 	}
+
 }
