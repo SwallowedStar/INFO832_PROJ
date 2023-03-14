@@ -1,7 +1,9 @@
 package polytech.annecy.groupe_valentin.discrete_behavior_simulator;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +11,12 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClockTest {
-
+    @BeforeEach
+    void setUp() throws NoSuchFieldException, IllegalAccessException {
+        Field instance = Clock.class.getDeclaredField("instance");
+        instance.setAccessible(true);
+        instance.set(null, null);
+    }
 
     @Test
     void getInstance() {
