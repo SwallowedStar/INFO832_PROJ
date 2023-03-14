@@ -2,7 +2,7 @@ package polytech.annecy.groupe_valentin.timer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.TreeSet;
+import java.util.SortedSet;
 import java.util.List;
 
 public class DateTimer  implements Timer {
@@ -10,7 +10,7 @@ public class DateTimer  implements Timer {
 	List<Integer> lapsTimes;
 	Iterator<Integer> it;
 	
-	public DateTimer(TreeSet<Integer> dates) {
+	public DateTimer(SortedSet<Integer> dates) {
 		this.lapsTimes = new ArrayList<>();
 		Integer last;
 		Integer current=0;

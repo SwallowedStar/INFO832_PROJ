@@ -35,7 +35,7 @@ public class DiscreteAction implements DiscreteActionInterface {
 		this();
 		this.object = o;
 		try{	
-			this.method = o.getClass().getDeclaredMethod(m, new Class<?>[0]);
+			this.method = o.getClass().getDeclaredMethod(m);
 		}
 		catch(Exception e){
 			e.printStackTrace();
