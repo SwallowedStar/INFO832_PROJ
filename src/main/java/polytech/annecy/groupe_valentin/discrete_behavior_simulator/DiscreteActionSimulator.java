@@ -3,7 +3,8 @@ package polytech.annecy.groupe_valentin.discrete_behavior_simulator;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -25,7 +26,7 @@ public class DiscreteActionSimulator implements Runnable {
 	
 	private Clock globalTime;
 	
-	private Vector<DiscreteActionInterface> actionsList = new Vector<>();
+	private List<DiscreteActionInterface> actionsList = new ArrayList<>();
 	
 	private int nbLoop;
 	private int step;
@@ -132,7 +133,7 @@ public class DiscreteActionSimulator implements Runnable {
 		DiscreteActionInterface a = this.actionsList.remove(0);
 		if(a.hasNext()) {
 			a = a.next();
-			this.actionsList.addElement(a);
+			this.actionsList.add(a);
 			if(this.globalTime!=null) {
 				this.logger.log(Level.FINE, String.format("[DAS] reset action {} on {}:{} at {} to {} time units%n", a.getMethod().getName(), a.getObject().getClass().getName(), a.getObject().hashCode(), this.globalTime.getTime(), a.getCurrentLapsTime()));
 			}else {
