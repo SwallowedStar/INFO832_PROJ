@@ -10,7 +10,7 @@ import java.util.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PeriodicTimerTest {
+class PeriodicTimerTest {
     private PeriodicTimer t1;
     private PeriodicTimer t2;
     private PeriodicTimer t3;
@@ -23,14 +23,14 @@ public class PeriodicTimerTest {
     }
 
     @Test
-    public void testHasNext(){
+    void testHasNext(){
         assertTrue(this.t1.hasNext());
         assertTrue(this.t2.hasNext());
         assertTrue(this.t3.hasNext());
     }
 
     @Test
-    public void testNext() {
+    void testNext() {
         assertEquals(2, this.t1.next());
         assertEquals(9, this.t2.next());
         assertEquals(2, this.t2.next());
@@ -38,7 +38,7 @@ public class PeriodicTimerTest {
     }
     
     @Test
-    public void testExceptionThrown_NegativeArgument () {
+    void testExceptionThrown_NegativeArgument () {
     	Exception exception = assertThrows(IllegalArgumentException.class, () -> {
     		new PeriodicTimer(-5);
         });

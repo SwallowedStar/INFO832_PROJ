@@ -9,7 +9,7 @@ import polytech.annecy.groupe_valentin.timer.RandomTimer.randomDistribution;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RandomTimerTest {
+class RandomTimerTest {
 
     private randomDistribution distribution1;
     private randomDistribution distribution2;
@@ -35,7 +35,7 @@ public class RandomTimerTest {
     }
 
     @Test
-    public void testNext(){
+    void testNext(){
         assertNotSame(-1, this.randomTimer1.next());
         assertNotSame(-1, this.randomTimer3.next());
     }
