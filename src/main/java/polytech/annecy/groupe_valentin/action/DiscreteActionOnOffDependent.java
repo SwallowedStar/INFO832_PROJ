@@ -1,7 +1,7 @@
 package polytech.annecy.groupe_valentin.action;
 
 import java.lang.reflect.Method;
-import java.util.TreeSet;
+import java.util.SortedSet;
 
 import polytech.annecy.groupe_valentin.timer.DateTimer;
 import polytech.annecy.groupe_valentin.timer.Timer;
@@ -36,7 +36,7 @@ public class DiscreteActionOnOffDependent implements DiscreteActionInterface {
 		this.currentAction = this.offAction;
 	}
 	
-	public DiscreteActionOnOffDependent(Object o, String on, TreeSet<Integer> datesOn, String off, TreeSet<Integer> datesOff){
+	public DiscreteActionOnOffDependent(Object o, String on, SortedSet<Integer> datesOn, String off, SortedSet<Integer> datesOff){
 		this.onAction = new DiscreteAction(o, on, new DateTimer(datesOn));
 		this.offAction = new DiscreteAction(o, off, new DateTimer(datesOff));
 		
