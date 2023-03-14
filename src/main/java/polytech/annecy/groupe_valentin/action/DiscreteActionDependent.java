@@ -39,7 +39,7 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 
 	private void reInit() {
 		for (Iterator<DiscreteAction> iter = this.depedentActions.iterator(); iter.hasNext(); ) {
-		    DiscreteAction element = iter.next();
+		    iter.next();
 		}		
 	}
 	
@@ -87,8 +87,8 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	}
 
 	public DiscreteActionInterface next() {
-		Method method = this.getMethod();
-		Object object = this.getObject();
+		this.getMethod();
+		this.getObject();
 		return this;
 	}
 
