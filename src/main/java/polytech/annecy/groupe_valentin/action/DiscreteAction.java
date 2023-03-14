@@ -10,7 +10,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import polytech.annecy.groupe_valentin.discreteBehaviorSimulator.LogFormatter;
+import polytech.annecy.groupe_valentin.discrete_behavior_simulator.LogFormatter;
 
 /**
  * @author Tiphaine Bulou (2016)
