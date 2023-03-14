@@ -11,7 +11,7 @@ import java.util.TreeSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DiscreteActionOnOffDependentTest {
+class DiscreteActionOnOffDependentTest {
 	
 	private DiscreteActionOnOffDependent da1;
 	private DiscreteActionOnOffDependent da2;
@@ -55,7 +55,7 @@ public class DiscreteActionOnOffDependentTest {
 
 	
 	@Test
-    public void testHasNext() {
+    void testHasNext() {
 		// Test avec le premier constructeur
 		assertTrue(this.da1.hasNext());
 		assertTrue(this.da2.hasNext());
@@ -68,7 +68,7 @@ public class DiscreteActionOnOffDependentTest {
 	
 	
 	@Test
-    public void testGetMethod() {
+    void testGetMethod() {
 		// Test avec le premier constructeur
 		assertEquals("toLowerCase", this.da1.getMethod().getName());
 		this.da1.next();
@@ -81,7 +81,7 @@ public class DiscreteActionOnOffDependentTest {
 	}
 	
 	@Test
-    public void testSpendTime() {
+    void testSpendTime() {
 		assertNull(this.da1.getCurrentLapsTime());
 		this.da1.spendTime(1);
         this.da1.next();
