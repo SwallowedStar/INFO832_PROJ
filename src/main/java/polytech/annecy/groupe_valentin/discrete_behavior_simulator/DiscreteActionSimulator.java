@@ -38,12 +38,10 @@ public class DiscreteActionSimulator implements Runnable {
 		
 		// Start logger
 		this.logger = Logger.getLogger("DAS");
-		//this.logger = Logger.getLogger("APP");
 		this.logger.setLevel(Level.ALL);
 		this.logger.setUseParentHandlers(true);
 		try{
 			this.logFile = new FileHandler(this.getClass().getName() + ".log");
-			//this.logFile.setFormatter(new SimpleFormatter());
 			this.logFile.setFormatter(new LogFormatter());
 			this.logConsole = new ConsoleHandler();
 		}catch(Exception e){
@@ -82,11 +80,6 @@ public class DiscreteActionSimulator implements Runnable {
 			Collections.sort(this.actionsList);
 		}
 	}
-	
-	/*public void addTemporalRule(TemporalRule r){
-		
-	}*/
-
 	/**
 	 * @return the laps time before the next action
 	 */
@@ -109,9 +102,7 @@ public class DiscreteActionSimulator implements Runnable {
 		sleepTime = currentAction.getCurrentLapsTime();
 		
 		try {
-			//Thread.sleep(sleepTime); // Real time can be very slow
 			Thread.yield();
-			//Thread.sleep(1000); // Wait message bus sends
 			if(this.globalTime!=null) {
 				this.globalTime.increase(sleepTime);
 			}
@@ -136,26 +127,10 @@ public class DiscreteActionSimulator implements Runnable {
 		
 		// update time laps off all actions
 		for(int i=1 ; i < this.actionsList.size(); i++){
-			//int d = this.actionsList.get(i).getLapsTime();
-			//this.actionsList.get(i).setLapsTemps(d- runningTimeOf1stCapsul);
 			this.actionsList.get(i).spendTime(runningTimeOf1stCapsul);
 		}
 
 		// get new time lapse of first action
-		/*if(this.globalTime == null) {
-			this.actionsList.get(0).updateTimeLaps();
-		}else {	
-			this.actionsList.get(0).updateTimeLaps(this.globalTime.getTime());
-		}
-		
-		// remove the action if no more lapse time is defined
-		if(this.actionsList.get(0).getLastLapsTime() == null) {
-			this.actionsList.remove(0);
-		}else {
-			// resort the list
-			Collections.sort(this.actionsList);
-		}*/
-
 		DiscreteActionInterface a = this.actionsList.remove(0);
 		if(a.hasNext()) {
 			a = a.next();

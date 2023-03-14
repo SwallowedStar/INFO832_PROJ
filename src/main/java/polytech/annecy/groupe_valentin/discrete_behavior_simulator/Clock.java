@@ -51,19 +51,7 @@ public class Clock {
 			o.nextClockChange(this.nextJump);
 		}
 	}
-	/*public void setTime(int time) throws IllegalAccessException {
-		this.lock.lock();
-		if (this.time < time) {
-			this.time = time;
-			for(ClockObserver o:this.observers) {
-				o.ClockChange();
-			}
-		}else{
-			this.lock.unlock();
-			throw new IllegalAccessException("Set time error, cannot go back to the past !!!");
-		}
-		this.lock.unlock();
-	}*/
+
 	public void increase(int time) throws Exception {
 
 		this.lockWriteAccess();
