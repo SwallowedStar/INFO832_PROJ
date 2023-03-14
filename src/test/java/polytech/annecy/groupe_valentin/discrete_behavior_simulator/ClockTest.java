@@ -40,23 +40,31 @@ class ClockTest {
         assertTrue(ck.isVirtual());
     }
 
-    @Test
-    void setNextJump() {
+    private class TestClassClockObserver implements ClockObserver{
+        public Integer time = 0;
+        public Integer jump = 0;
+        @Override
+        public void clockChange(int time) {this.time = time;}
 
+        @Override
+        public void nextClockChange(int nextJump) {this.jump = nextJump;}
     }
 
     @Test
-    void increase() throws Exception{
+    void increase(){
         Clock clock = Clock.getInstance();
+        TestClassClockObserver testClock = new TestClassClockObserver();
+        clock.addObserver(testClock);
         clock.setVirtual(true);
         clock.setNextJump(1);
+        assertEquals(1, testClock.jump);
 
-
-        //
         clock.increase(1);
 
         assertEquals(1, clock.getTime());
+        assertEquals(1, testClock.time);
 
+        assertThrowsExactly(IllegalArgumentException.class, () -> clock.increase(2)) ;
 
     }
 
