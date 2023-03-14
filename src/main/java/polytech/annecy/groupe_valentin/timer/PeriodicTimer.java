@@ -1,14 +1,15 @@
 package polytech.annecy.groupe_valentin.timer;
 
-public class PeriodicTimer implements Timer {
+public class PeriodicTimer extends Exception implements Timer {
 
 	private int period;
 	private int next;
 	private RandomTimer moreOrLess = null;
 	
 	public PeriodicTimer(int at) {
+		if (at<0) throw new IllegalArgumentException("argument is negative");
 		this.period = at;
-		this.next = at;
+   		this.next = at;
 	}
 	
 	/**
@@ -19,12 +20,14 @@ public class PeriodicTimer implements Timer {
 	 */
 	@Deprecated
 	public PeriodicTimer(int at, RandomTimer moreOrLess) {
+		if (at<0) throw new IllegalArgumentException("argument is negative");
 		this.period = at;
 		this.moreOrLess = moreOrLess;
 		this.next = at + (int)(this.moreOrLess.next() - this.moreOrLess.getMean());
 	}
 	
 	public PeriodicTimer(int period, int at) {
+		if (at<0 || period<0) throw new IllegalArgumentException("argument is negative");
 		this.period = period;
 		this.next = at;
 	}
@@ -38,6 +41,7 @@ public class PeriodicTimer implements Timer {
 	 */
 	@Deprecated
 	public PeriodicTimer(int period, int at, RandomTimer moreOrLess) {
+		if (at<0 || period<0) throw new IllegalArgumentException("argument is negative");
 		this.period = period;
 		this.moreOrLess = moreOrLess;
 		this.next = at + (int)(this.moreOrLess.next() - this.moreOrLess.getMean());
