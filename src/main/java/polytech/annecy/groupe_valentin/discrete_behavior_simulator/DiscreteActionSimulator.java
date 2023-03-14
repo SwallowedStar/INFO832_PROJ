@@ -148,12 +148,12 @@ public class DiscreteActionSimulator implements Runnable {
 		int count = this.nbLoop;
 		boolean finished = false;
 
-		System.out.println("LANCEMENT DU THREAD " + t.getName() + " %n");
+		this.logger.log(Level.FINE, String.format("LANCEMENT DU THREAD {} %n", t.getName()));
 
 		while(running && !finished){
 
 			if(!this.actionsList.isEmpty()){
-				System.out.println(this);
+				this.logger.log(Level.FINE, this.toString());
 				this.globalTime.setNextJump(this.nextLapsTime());
 				
 				this.globalTime.lockWriteAccess();
@@ -167,7 +167,7 @@ public class DiscreteActionSimulator implements Runnable {
 				}
 				//TODO add global time synchronizer for action with list of date and avoid drift 
 			}else{
-				System.out.println("NOTHING TO DO%n");
+				this.logger.log(Level.FINE, "NOTHING TO DO%n");
 				this.stop();
 			}
 
@@ -206,5 +206,4 @@ public class DiscreteActionSimulator implements Runnable {
 	public boolean getRunning() {
 		return this.running;
 	}
-
 }
