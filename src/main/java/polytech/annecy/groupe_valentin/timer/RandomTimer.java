@@ -33,7 +33,7 @@ public class RandomTimer implements Timer {
 	 * @param param constraint 
 	 * @throws Exception 
 	 */
-	public RandomTimer(randomDistribution distribution, double param) throws Exception{
+	public RandomTimer(randomDistribution distribution, double param) throws IllegalArgumentException {
 		if(distribution == randomDistribution.EXP ){
 			this.distribution = distribution;
 			this.rate = param;
@@ -47,14 +47,14 @@ public class RandomTimer implements Timer {
 			this.lolim = 0;
 			this.hilim = Double.POSITIVE_INFINITY;
 		}else{
-			throw new Exception("Bad Timer constructor for selected distribution");
+			throw new IllegalArgumentException("Bad Timer constructor for selected distribution");
 		}
 	}
 	/**
 	 * @param min/max constraint
 	 * @throws Exception 
 	 */
-	public RandomTimer(randomDistribution distribution, int lolim, int hilim) throws Exception{
+	public RandomTimer(randomDistribution distribution, int lolim, int hilim) throws IllegalArgumentException {
 		if(distribution == randomDistribution.POSIBILIST || distribution == randomDistribution.GAUSSIAN){
 			this.distribution = distribution;
 			this.mean = lolim + ((double) hilim - lolim)/2;
@@ -62,7 +62,7 @@ public class RandomTimer implements Timer {
 			this.lolim = lolim;
 			this.hilim = hilim;
 		}else{
-			throw new Exception("Bad Timer constructor for selected distribution");
+			throw new IllegalArgumentException("Bad Timer constructor for selected distribution");
 		}
 	}
 	
