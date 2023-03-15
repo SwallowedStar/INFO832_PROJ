@@ -148,12 +148,12 @@ public class DiscreteActionSimulator implements Runnable {
 		int count = this.nbLoop;
 		boolean finished = false;
 
-		System.out.println("LANCEMENT DU THREAD " + t.getName() + " %n");
+		this.logger.log(Level.FINE, String.format("LANCEMENT DU THREAD {} %n", t.getName()));
 
 		while(running && !finished){
 
 			if(!this.actionsList.isEmpty()){
-				System.out.println(this);
+				this.logger.log(Level.FINE, this.toString());
 				this.globalTime.setNextJump(this.nextLapsTime());
 				
 				this.globalTime.lockWriteAccess();
@@ -167,7 +167,7 @@ public class DiscreteActionSimulator implements Runnable {
 				}
 				//TODO add global time synchronizer for action with list of date and avoid drift 
 			}else{
-				System.out.println("NOTHING TO DO%n");
+				this.logger.log(Level.FINE, "NOTHING TO DO%n");
 				this.stop();
 			}
 
@@ -178,9 +178,9 @@ public class DiscreteActionSimulator implements Runnable {
 		}
 		this.running = false;
 		if(this.step>0) {
-			this.logger.log(Level.FINE, String.format("DAS: {} actions done for {} turns asked.", (this.nbLoop - count), this.nbLoop));
+			this.logger.log(Level.FINE, String.format("DAS: %d actions done for %d turns asked.", (this.nbLoop - count), this.nbLoop));
 		}else {
-			this.logger.log(Level.FINE, String.format("DAS: {} actions done!", count));			
+			this.logger.log(Level.FINE, String.format("DAS: %d actions done!", count));			
 		}
 	}
 
@@ -190,12 +190,12 @@ public class DiscreteActionSimulator implements Runnable {
 	}
 
 	public void stop(){
-		this.logger.log(Level.FINE, String.format("STOP THREAD {} obj {}", t.getName(), this));
+		this.logger.log(Level.FINE, String.format("STOP THREAD %s obj %s", t.getName(), this.toString()));
 		this.running = false;
 	}
 	
 	public String toString(){
-		StringBuffer toS = new StringBuffer("------------------%nTestAuto :" + this.actionsList.size());
+		StringBuilder toS = new StringBuilder("------------------%nTestAuto :" + this.actionsList.size());
 		for(DiscreteActionInterface c : this.actionsList){
 			toS.append(c.toString() + "%n");
 		}
@@ -206,5 +206,4 @@ public class DiscreteActionSimulator implements Runnable {
 	public boolean getRunning() {
 		return this.running;
 	}
-
 }
