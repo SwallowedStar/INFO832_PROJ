@@ -178,9 +178,9 @@ public class DiscreteActionSimulator implements Runnable {
 		}
 		this.running = false;
 		if(this.step>0) {
-			this.logger.log(Level.FINE, String.format("DAS: {} actions done for {} turns asked.", (this.nbLoop - count), this.nbLoop));
+			this.logger.log(Level.FINE, String.format("DAS: %d actions done for %d turns asked.", (this.nbLoop - count), this.nbLoop));
 		}else {
-			this.logger.log(Level.FINE, String.format("DAS: {} actions done!", count));			
+			this.logger.log(Level.FINE, String.format("DAS: %d actions done!", count));			
 		}
 	}
 
@@ -190,12 +190,12 @@ public class DiscreteActionSimulator implements Runnable {
 	}
 
 	public void stop(){
-		this.logger.log(Level.FINE, String.format("STOP THREAD {} obj {}", t.getName(), this));
+		this.logger.log(Level.FINE, String.format("STOP THREAD %s obj %s", t.getName(), this.toString()));
 		this.running = false;
 	}
 	
 	public String toString(){
-		StringBuffer toS = new StringBuffer("------------------%nTestAuto :" + this.actionsList.size());
+		StringBuilder toS = new StringBuilder("------------------%nTestAuto :" + this.actionsList.size());
 		for(DiscreteActionInterface c : this.actionsList){
 			toS.append(c.toString() + "%n");
 		}
