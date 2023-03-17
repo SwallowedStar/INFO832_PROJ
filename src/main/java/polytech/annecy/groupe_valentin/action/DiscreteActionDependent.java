@@ -10,14 +10,14 @@ import polytech.annecy.groupe_valentin.timer.Timer;
  * @author flver
  *
  */
-//TODO Must be refactored to be generic
 public class DiscreteActionDependent implements DiscreteActionInterface {
 	
-	protected DiscreteAction baseAction;
-	protected TreeSet<DiscreteAction> depedentActions;
-	private Iterator<DiscreteAction> it;
-	protected DiscreteAction currentAction;
-	
+	protected DiscreteActionInterface baseAction;
+	protected TreeSet<DiscreteActionInterface> depedentActions;
+	private Iterator<DiscreteActionInterface> it;
+	protected DiscreteActionInterface currentAction;
+
+	private Boolean started = false;
 	
 	/**
 	 * Construct a series of dependent actions, first action (method) called is baseMethodName, then method nextMethod() is called to select the next action. 
@@ -33,32 +33,33 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 		this.currentAction = this.baseAction;
 	}
 	
-	public void addDependence(Object o, String depentMethodName, Timer timerDependence) {
-		this.depedentActions.add(new DiscreteAction(o, depentMethodName, timerDependence));
+	public void addDependence(Object o, String dependentMethodName, Timer timerDependence) {
+		this.depedentActions.add(new DiscreteAction(o, dependentMethodName, timerDependence));
 	}
 
 	private void reInit() {
-		for (Iterator<DiscreteAction> iter = this.depedentActions.iterator(); iter.hasNext(); ) {
-		    iter.next();
-		}		
+		for (DiscreteActionInterface depedentAction : this.depedentActions) {
+			//TODO finish this method
+		}
 	}
 	
-	public void nextMethod(){
-		if (this.currentAction == this.baseAction){
+	private void nextMethod(){
+		if (this.currentAction == this.baseAction && Boolean.TRUE.equals(this.started)){
 			this.it = this.depedentActions.iterator();
 			this.currentAction = this.it.next();
-		}else if(this.currentAction == this.depedentActions.last()){
+		}else if(this.currentAction == this.depedentActions.last() && this.currentAction.hasNext()){
 			this.currentAction = this.baseAction;
 			this.reInit();
 		}else {
-			this.currentAction = this.it.next();
+			this.it = this.depedentActions.iterator();
+			this.currentAction.next();
 		}
 	}
 	
 	public void spendTime(int t) {
-		for (Iterator<DiscreteAction> iter = this.depedentActions.iterator(); iter.hasNext(); ) {
-		    DiscreteAction element = iter.next();
-		    element.spendTime(t);
+		this.currentAction.spendTime(t);
+		for (DiscreteActionInterface element : this.depedentActions) {
+			element.spendTime(t);
 		}
 	}
 
@@ -88,12 +89,21 @@ public class DiscreteActionDependent implements DiscreteActionInterface {
 	}
 
 	public DiscreteActionInterface next() {
-		this.getMethod();
-		this.getObject();
+		this.nextMethod();
+		if(Boolean.FALSE.equals(this.started)){
+			for (DiscreteActionInterface element : this.depedentActions) {
+				element.next();
+			}
+		}
+		this.started = true;
 		return this;
 	}
 
 	public boolean hasNext() {
-		return this.baseAction.hasNext() || !this.depedentActions.isEmpty();		
+		boolean result = this.baseAction.hasNext();
+		for (DiscreteActionInterface element : this.depedentActions) {
+			result = result || element.hasNext();
+		}
+		return result;
 	}
 }

@@ -23,7 +23,7 @@ public class RandomTimer implements Timer {
 	private double hilim; 
 	
 	public static randomDistribution string2Distribution(String distributionName){
-		return RandomTimer.randomDistribution.valueOf(RandomTimer.randomDistribution.class, distributionName.toUpperCase());
+		return Enum.valueOf(RandomTimer.randomDistribution.class, distributionName.toUpperCase());
 	}	
 	public static String distribution2String(randomDistribution distribution){
 		return distribution.name();

@@ -5,16 +5,16 @@ public class PeriodicTimer extends Exception implements Timer {
 	private int period;
 	private int next;
 	private RandomTimer moreOrLess = null;
-	private static final String argumentIsNegative = "argument is negative";
+	private static final String ARGUMENT_IS_NEGATIVE = "argument is negative";
 	
 	public PeriodicTimer(int at) {
-		if (at<0) throw new IllegalArgumentException(this.argumentIsNegative);
+		if (at<0) throw new IllegalArgumentException(ARGUMENT_IS_NEGATIVE);
 		this.period = at;
    		this.next = at;
 	}
 
 	public PeriodicTimer(int period, int at) {
-		if (at<0 || period<0) throw new IllegalArgumentException(this.argumentIsNegative);
+		if (at<0 || period<0) throw new IllegalArgumentException(ARGUMENT_IS_NEGATIVE);
 		this.period = period;
 		this.next = at;
 	}

@@ -81,7 +81,7 @@ public class DiscreteAction implements DiscreteActionInterface {
     	if(this.lapsTime < c.getCurrentLapsTime()){
     		return -1;
     	}
-		if(this.lapsTime == c.getCurrentLapsTime()){
+		if(this.lapsTime.equals(c.getCurrentLapsTime())){
 			return 0;
 		}
 		return 0;
@@ -100,10 +100,6 @@ public class DiscreteAction implements DiscreteActionInterface {
 	}
 
 	public boolean hasNext() {
-		Boolean more=false;
-		if (this.timmer != null && this.timmer.hasNext()) {
-			more = true;
-		}
-		return more;		
+		return this.timmer != null && this.timmer.hasNext();
 	}
 }
